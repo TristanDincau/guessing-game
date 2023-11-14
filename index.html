@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+body {
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  font-size: 5vw;
+  background-color: blue;
+  border-radius: 2rem;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+}
+input.letter-input {
+  width: calc(83% / 5);
+  text-align: center;
+  height: 2rem;
+  font-size: 4vw;
+  background-color: lightblue;
+  border-color: lightblue;
+  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.5);
+  margin: 0 1%;
+}
+input.letter-input:hover {
+  background-color: blue;
+  color: white;
+  border-color: lightblue;
+  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.5);
+  margin: 0 1%;
+}
+
+main {
+  width: 80%;
+  height: 80vh;
+  margin: auto;
+  background-color: lightgrey;
+}
+table {
+  text-align: center;
+  border: 1px solid black;
+  margin: 2rem auto;
+}
+th,
+td {
+  width: calc(70% / 5);
+  padding: 0.5rem;
+  border: 1px dashed blue;
+  vertical-align: top;
+  background-color: lightblue;
+}
+h2 {
+  margin: 0;
+  color: red;
+}
+option {
+  color: red;
+}
+#character-image {
+  animation: rockingCharacter 5s ease-in-out infinite;
+}
+@keyframes rockingCharacter {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate (0deg);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Choose your Character!</h2>
+        <img src="" width="100" height="100" id="character-image" alt="character-select-image" />
+        <select name="image-choice" id="image-select">
+          <option value="" disabled selected>Select an image</option>
+          <!--   <option value="mario-raccoon"> Tanooki Mario</option>
+        <option value="astro-mario">Astro Mario</option>
+        <option value="peach-pink">Pink Peach</option>
+        <option value="dk-black">Donky Kong Black</option> -->
+          <option value="drip-bowser">Dripped Bowser</option>
+          <option value="vector-ray">Vector</option>
+          <option value="sally-car">Sally</option>
+          <option value="nash-shark">Nash</option>
+          <option value="captain-jack">Captain Jack Sparrow</option>
+        </select>
+        <header>
+          <h1>Guess the Password!</h1>
+        </header>
+        <form id="password-form">
+          <!--     <input class="letter-input" type="text" maxLength="1">
+          <input class="letter-input" type="text" maxLength="1">
+          <input class="letter-input" type="text" maxLength="1">
+          <input class="letter-input" type="text" maxLength="1">
+          <input class="letter-input" type="text" maxLength="1"> -->
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th>Wrong: </th>
+              <th>Wrong: </th>
+              <th>Wrong: </th>
+              <th>Wrong: </th>
+              <th>Wrong: </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> X: <br> <br> </td>
+              <td> X: <br> <br> </td>
+              <td> X: <br> </td>
+              <td> X: <br> </td>
+              <td> X: <br> </td>
+      
+            </tr>
+          </tbody>
+        </table>
+      </main>
+      <script>
+        const passwordForm = document.querySelector("#password-form");
+let phrase = "guess";
+let index = 0;
+let fails = 0;
+let cl = console.log;
+const imageSelect = document.getElementById("image-select");
+const characterImg = document.getElementById("character-image");
+
+for (let char of phrase) {
+  cl(char);
+  cl(index);
+  const letterInput = document.createElement("input");
+  letterInput.type = "text";
+  letterInput.classList.add("letter-input");
+  letterInput.maxLength = "1";
+  letterInput.id = index.toString();
+  passwordForm.appendChild(letterInput);
+  index++;
+}
+
+passwordForm.addEventListener("change", function (event) {
+  const thisInput = event.target;
+  const guess = thisInput.value;
+  cl(thisInput);
+  cl(guess);
+
+  if (guess === phrase[parseInt(thisInput.id)]) {
+    cl("you guessed right");
+    alert("your guess was right!");
+  } else {
+    cl("Wrong!");
+    alert("your wrong!");
+  }
+});
+const dripBowser =
+  "https://static.wikia.nocookie.net/magnificentbaddie/images/9/92/Bowser_%28Super_Mario_Odyssey%29.png";
+const vector =
+  "https://drive.google.com/uc?export=view&id=1R1FMtJ05ls3G0kvHz7MynfGzqU-IjQb4";
+// "https://drive.google.com/file/d/1R1FMtJ05ls3G0kvHz7MynfGzqU-IjQb4/view?usp=sharing"
+const sallyCar =
+  "https://drive.google.com/uc?export=view&id=13PeitDGGK3mZ4E0iBKjo0HrB1RQO65YA";
+// https://drive.google.com/file/d/13PeitDGGK3mZ4E0iBKjo0HrB1RQO65YA/view?usp=share_link
+const nash =
+  "https://drive.google.com/uc?export=view&id=11iTjW-diWnXKrp3258xeFI6B_IgIRi0k";
+// https://drive.google.com/file/d/11iTjW-diWnXKrp3258xeFI6B_IgIRi0k/view?usp=share_link
+const jackSparrow =
+  "https://drive.google.com/uc?export=view&id=1tV6--ZXVQXQWELAzZ0ITXP_c2Sd9gjIP";
+// https://drive.google.com/file/d/1tV6--ZXVQXQWELAzZ0ITXP_c2Sd9gjIP/view?usp=sharing
+characterImg.src = dripBowser;
+
+imageSelect.addEventListener("change", function () {
+  console.log(this.value);
+  let = userChoice = this.value;
+  if (userChoice === "drip-bowser") {
+    characterImg.src = dripBowser;
+  } else if (userChoice === "vector-ray") {
+    characterImg.src = vector;
+  } else if (userChoice === "sally-car") {
+    characterImg.src = sallyCar;
+  } else if (userChoice === "nash-shark") {
+    characterImg.src = nash;
+  } else if (userChoice === "captain-jack") {
+    characterImg.src = jackSparrow;
+  }
+});
+
+      </script>
+</body>
+</html>
